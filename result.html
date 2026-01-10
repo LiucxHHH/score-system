@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta content="yes" name="apple-mobile-web-app-capable">
+<!-- 防止网页自动缩放 -->
+<title></title>
+<link rel="icon" type="image/x-icon" href="/Public/static/images/favicon.ico" />
+<link rel="stylesheet" href="/Public/static/jquery_weui/lib/weui.min.css">
+<link rel="stylesheet" href="/Public/static/jquery_weui/css/jquery-weui.min.css">
+<script src="/Public/static/jquery_weui/lib/jquery-2.1.4.js"></script>
+<script src="/Public/static/jquery_weui/js/jquery-weui.min.js"></script>
+<style type="text/css">
+.s_page-header_pic{
+	position:relative;display:table; width:100%;
+}
+.s_page-header_pic .banner-img{
+	position:relative;width:100%;
+}
+.s_page-header_pic .banner-text{
+	position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);text-align: center;width: 100%;font-size:22px;color:#fff;
+}
+.s_page-header_color{
+	padding:45px 20px;text-align:center;font-size:22px;color:#fff;
+}
+body,html{
+	background:#F0EFF4;
+	margin: 0;
+	padding:0;
+	height: 100%;
+}
+#wrapper {
+	min-height: 100%;
+	margin-bottom: -110px;
+}
+.ad-list{
+ margin:10px;
+}
+#footer,.push {
+	height:120px;
+}
+.cert-box{
+	padding:20px;
+}
+.cert-box .cert-row{
+	margin-bottom:10px;
+}
+.cert-box .cert-row .b-txt{
+	font-weight:bold;
+}
+.weui-input{
+	border: 1px solid #ececec;
+	padding:5px;
+	box-sizing: border-box;
+	height: auto;
+	border-radius: 0;
+}
+.weui-cells {
+    font-size: 14px;
+}
+.more-container{
+	font-size:14px;text-align:center;margin-bottom: 10px;
+}
+.more-container a{
+	color:#0066FF;
+}
+</style>
+
+<style type="text/css">
+.weui-select {
+	height: 33px;
+    line-height: 33px;
+}
+.vip-login-tips{
+	margin:20px 15px;
+	font-size:14px;
+}
+.vip-login-tips img{
+	max-width:100%;
+}
+.warning-info{
+	padding:10px;
+	color:red;
+}
+.weui-dialog__bd {
+    padding: 0.8em 1.6em 0.8em;
+}
+.weui-dialog__btn.blue{
+	color: rgb(14, 123, 227);
+}
+</style>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ca667b4e604f41172ad66175206437c5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+<body style="height: 100%;">
+	<div id="wrapper">
+		<div class="s_page-header_color" style="background:#0166cc;">
+		第二次月考成绩 查询	</div>
+		
+<form id="form-data" onsubmit="return false">
+	<div style="margin:20px 15px;color:#000;font-size:14px;">请输入正确的查询条件进行查询</div><div class="weui-cells weui-cells_form">
+	<div class="weui-cell">
+	    <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+	    <div class="weui-cell__bd">
+	    										<input class="weui-input" data-sname="姓名" name="s_xingming" type="text" placeholder="请输入姓名">	    </div>
+	</div><div class="weui-cell">
+	    <div class="weui-cell__hd"><label class="weui-label">身份证后四位</label></div>
+	    <div class="weui-cell__bd">
+	    										<input class="weui-input" data-sname="身份证后四位" name="s_shenfenzhenghousiwei" type="text" placeholder="请输入身份证后四位">	    </div>
+	</div>		<div id="jsPicVerifyBox">
+		</div>
+	</div>
+</form>
+<div class="weui-btn-area">
+	<button type="button" class="weui-btn weui-btn_primary" id="yiDunSubmitBtn" style="background:#1aad19;color:#ffffff;">查询</button>
+</div>
+<div style="text-align:center;margin-top:20px;">
+	<a style="color: #6D6D6D;font-size: 14px;" href="https://mp.weixin.qq.com/s/ZUM7barrngkTxpgaJWJhKg">查询必读</a>
+</div>
+		<div class="push"></div>
+	</div>
+	<!-- /**e69cace7ab99e68980e69c89e4bba3e7a081e5a48de588b6e887aa796963686166656e2e636f6d**/  -->
+	
+	<div id="fixed-footer" style="position:fixed;bottom:0;text-align:center;width:100%;background:#F0EFF4;padding: 10px 10px 50px;box-sizing: border-box;z-index:99;">
+		<div class="more-container">
+						<a href="/index/sharefriend.html">分享好友</a> | 
+			<a href="/index/subnotice.html">订阅通知</a> | 
+			<a href="/index/myfav.html">我的保存</a>
+		</div>
+		<a href="https://mp.weixin.qq.com/s/oRm2vWKBL2syfmCo8ZJ89g" style="display:block;font-size:14px;margin-top:4px;">
+			<span style="color:#6D6D6D;">
+				<span>本查询使用</span>
+				<span>
+					<img style="height:24px; vertical-align: -0.5em;" src="/Public/static/images/ycfwpt-logo.png"/>
+					<span style="font-size:15px;color:#000;font-weight:bold;">易查分</span>
+				</span>
+				<span>制作，</span>
+				<span style="color:#34A765;">免费制作查询 ></span>
+			</span>
+		</a>
+	</div>
+	
+<script type="text/javascript" src="/Public/static/js/common.js?v=1"></script>
+<script type="text/javascript">
+$("#yiDunSubmitBtn").click(function(){
+	yiDunPost();
+});
+$("body").on("click", "#verifyimg", function(){
+    var verifyimg = "/public/verify.html";
+    $("#verifyimg").attr("src", verifyimg+'&random='+Math.random());
+});
+function yiDunPost(){
+	var params = $("#form-data").serializeArray();  
+	var values = {};  
+	for( x in params ){
+	    if(params[x].value.trim()==''){
+	        var alertMsg = '';
+	    	if(params[x].name=='NECaptchaValidate'){
+	    		alertMsg = '请点击验证码进行验证';
+	    	}else{
+	    		var sname = $("*[name='"+params[x].name+"']").data('sname');
+	        	alertMsg = sname + '不能为空';
+	    	}
+	    				var jumpUrl = getJumpUrl(1);
+			$.costomAlert(alertMsg, jumpUrl, '查看说明', '关闭', '提示', null);	        return;
+	    }
+	   values[params[x].name] = params[x].value;  
+	}
+	$("#yiDunSubmitBtn").prop('disabled', true);
+	$("#yiDunSubmitBtn").addClass('weui-btn_disabled');
+	$("#yiDunSubmitBtn").text('查询中...');
+	$.post("/public/verifycondition/sqcode/OsDcgn0mMDA4M3xiY2E2ZTk2ZDhlZmY0Y2MzYjYzN2QzMDYxMDBlODcyZXx0OGs1cWE3ZAO0O0OO0O0O/from_device/mobile.html", values,
+		function(result){
+		    $("#yiDunSubmitBtn").prop('disabled', false);
+		    $("#yiDunSubmitBtn").removeClass('weui-btn_disabled');
+		    $("#yiDunSubmitBtn").text('查询');
+			if(result.status == 0){
+								var jumpUrl = getJumpUrl(2);
+				if(result.errNo==1001){
+				    jumpUrl = getJumpUrl(3);
+				}else if(result.errNo==1002){
+				    jumpUrl = getJumpUrl(4);
+				}
+				if(result.showCountdown){
+					$.costomAlert2('<div>'+result.info+'<span style="color:red;white-space:nowrap;">（<span id="jsCountdownSec">10</span>秒后关闭）</span></div>', jumpUrl, '查看说明', '提示');
+					var sec = 9;
+					var countdownSecInterval = setInterval(function(){
+						if(sec<1){
+							clearInterval(countdownSecInterval);
+							sec = 9;
+							$.closeModal();
+						}else{
+							$("#jsCountdownSec").html(sec);
+							sec--;
+						}
+					}, 1000);
+					$("body").on("click", ".weui-mask", function(){
+						clearInterval(countdownSecInterval);
+						$.closeModal();
+					});
+				}else{
+					$.costomAlert(result.info, jumpUrl, '查看说明', '关闭', '提示',  null);
+				}				if(typeof(yidunCaptchaIns)!='undefined'){
+	        		yidunCaptchaIns && yidunCaptchaIns.refresh();
+	        	}
+	        	if(result.showPicVerify){
+	        		var verifyimgHtml = '<div class="weui-cell weui-cell_vcode">'
+		    		+'<div class="weui-cell__hd"><label class="weui-label">图片验证码：</label></div>'
+		    		+'<div class="weui-cell__bd">'
+		           	+'<input class="weui-input" data-sname="验证码" type="text" name="verify" placeholder="请输入图片验证码">'
+		    		+'</div>'
+		    		+'<div class="weui-cell__ft">'
+		        	+'<img id="verifyimg" class="weui-vcode-img" src="/public/verify.html" style="width:112px;">'
+		    		+'</div>'
+					+'</div>';
+					$("#jsPicVerifyBox").html(verifyimgHtml);
+	        	}
+			}else{
+				location.href=result.url;
+			}
+		}
+	)
+}
+function getJumpUrl(type){
+   if(type==1){
+       //查询条件不能为空
+       //return "/public/help1.html";
+       return "https://mp.weixin.qq.com/s/007-kIPKsoqM9IW69lf7oQ";
+   }else if(type==2){
+       //查询条件错误
+       //return "/public/help2.html";
+       return "https://mp.weixin.qq.com/s/pjTpppqjNq1qpxqV_r7c9g";
+   }else if(type==3){
+   	   //查询时间未到或者到期
+       return "/public/help3.html";
+   }else if(type==4){
+       //锁定查询
+       //return "/public/help4.html";
+       return " https://mp.weixin.qq.com/s/sroydQYOXgRqTztDU7piQQ";
+   }
+}
+</script>
+<script type="text/javascript">
+var windowWidth = window.innerWidth;
+if(windowWidth>600){
+	$('body,html').css({background:'gray'});
+	if($('#wrapper').height() < window.innerHeight){
+		$("#wrapper").css({height:window.innerHeight+'px'});
+	}
+	if($('#result_content').length>0){
+		$('.more-opt-box').css({width: '600px'});
+		$("#wrapper").css({width:'600px',margin:'0 auto', background:'#FFFFFF'});
+	}else{
+		$("#wrapper").css({width:'600px',margin:'0 auto -110px', background:'#F0EFF4'});
+	}
+	$('#fixed-footer').css({width:'600px', left:0, right:0, margin:'0 auto'});
+	if($('#ycf-sign-popup').length>0){
+		var left = (window.innerWidth-600)/2;
+		$('#ycf-sign-popup').css({left:left+'px', width:'600px'});
+	}
+}
+</script>
+<script>
+// 获取查询按钮元素
+var submitBtn = document.getElementById('yiDunSubmitBtn');
+
+// 给查询按钮添加点击事件监听器
+submitBtn.addEventListener('click', function(event) {
+    // 阻止表单默认提交行为
+    event.preventDefault();
+
+    // 直接跳转到成绩单页面
+    window.location.href = 'template.html'; // 请确保这个文件名和你实际的成绩单文件名一致
+});
+</script>
+</body>
+</html>
