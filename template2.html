@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta content="yes" name="apple-mobile-web-app-capable">
+<!-- 防止网页自动缩放 -->
+<title>期中考试成绩 查询</title>
+<link rel="icon" type="image/x-icon" href="/Public/static/images/favicon.ico" />
+<link rel="stylesheet" href="/Public/static/jquery_weui/lib/weui.min.css">
+<link rel="stylesheet" href="/Public/static/jquery_weui/css/jquery-weui.min.css">
+<script src="/Public/static/jquery_weui/lib/jquery-2.1.4.js"></script>
+<script src="/Public/static/jquery_weui/js/jquery-weui.min.js"></script>
+<style type="text/css">
+.s_page-header_pic{
+	position:relative;display:table; width:100%;
+}
+.s_page-header_pic .banner-img{
+	position:relative;width:100%;
+}
+.s_page-header_pic .banner-text{
+	position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);text-align: center;width: 100%;font-size:22px;color:#fff;
+}
+.s_page-header_color{
+	padding:45px 20px;text-align:center;font-size:22px;color:#fff;
+}
+body,html{
+	background:#F0EFF4;
+	margin: 0;
+	padding:0;
+	height: 100%;
+}
+#wrapper {
+	min-height: 100%;
+	margin-bottom: -110px;
+}
+.ad-list{
+ margin:10px;
+}
+#footer,.push {
+	height:120px;
+}
+.cert-box{
+	padding:20px;
+}
+.cert-box .cert-row{
+	margin-bottom:10px;
+}
+.cert-box .cert-row .b-txt{
+	font-weight:bold;
+}
+.weui-input{
+	border: 1px solid #ececec;
+	padding:5px;
+	box-sizing: border-box;
+	height: auto;
+	border-radius: 0;
+}
+.weui-cells {
+    font-size: 14px;
+}
+.more-container{
+	font-size:14px;text-align:center;margin-bottom: 10px;
+}
+.more-container a{
+	color:#0066FF;
+}
+</style>
+
+<style>
+body{
+	height:auto;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+}
+html,body{
+	background: #FFFFFF;
+}
+*{ 
+    -webkit-tap-highlight-color: rgba(0,0,0,0);  
+	-webkit-tap-highlight-color: transparent;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+.table-bordered {
+    border: 1px solid #ddd;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #ddd;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+td, th {
+    padding: 0;
+}
+a:link{text-decoration:none;} 
+a:visited{text-decoration:none;} 
+a:active{text-decoration:none;}
+.table{
+	table-layout:fixed;word-wrap:break-word;
+}.table-bordered>tbody>tr>td, 
+.table-bordered>tbody>tr>th, 
+.table-bordered>tfoot>tr>td, 
+.table-bordered>tfoot>tr>th, 
+.table-bordered>thead>tr>td, 
+.table-bordered>thead>tr>th{
+	border:1px solid #a0cffe;
+}
+.table .left_cell{
+		width:30%;	text-align:left;
+	background:#f0f8ff;
+}
+.table .right_cell{
+		width:70%;	text-align:left;
+	background:#ffffff;
+	word-break: break-all;
+}
+.table .left_cell .form_cell{
+	color:#333333;
+}
+.result_tips{
+	color:#2568cc;
+	padding:0;
+}
+.editable_input{
+	border:1px solid #C0C0C0;
+	width:100%;
+	border-radius:0;
+	font-size:15px;
+}
+.js_result_table input[type=text]{
+	height:30px;
+}
+.js_result_table .radio,.js_result_table .checkbox{
+	vertical-align:middle;
+}
+.js_result_table .label{
+	margin-right: 10px;
+}
+.weui-btn_small{
+	display: inline-block;
+    line-height: 2.3;
+    font-size: 13px;
+}
+.red-star{
+	color: red;
+    vertical-align: middle;
+}
+.js-edit-item .label span{
+	vertical-align: middle;
+}
+.vip-result-tips{
+	margin:20px 0;
+}
+.vip-result-tips img{
+	max-width:100%;
+}
+.scale-img{
+    max-width: 100%;
+}
+.qr-box{
+	background-color:#f2f4f6;
+	padding:10px 20px;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.qr-box .title{
+	font-size:16px;
+	font-weight: bold;
+}
+.qr-box .sub-title{
+	margin-top: 4px;
+}
+.push {
+ 	height:1px;
+}
+.ad-container {
+	padding: 10px; background-color: #EAEAEA;
+}
+.more-opt-box{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+    background: #F9F9F9;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px 0 #CCCCCC;
+    padding: 15px;
+	display:flex;
+	font-size:13px;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+}
+.more-opt-item a{
+	display: flex;
+	align-items: center;
+}
+.more-opt-box.normal-user .more-opt-item a{
+	display: block;
+	font-size: 10px;
+	text-align: center;
+}
+.more-opt-item .icon{
+	height: 14px;
+	width: 14px;
+	margin-right: 4px;
+}
+.more-opt-box.normal-user .more-opt-item .icon{
+	margin-right: 0;
+}
+.more-opt-item a,.more-opt-item a:hover,.more-opt-item a:visited,.more-opt-item a:active{
+	color: #333;
+}
+.weui_btn_plain_primary {
+    color: #04BE02;
+    border: 1px solid #04BE02;
+}
+.separator{
+  width: 1px;
+  height: 15px;
+  background: #cccccc;
+}
+.menu-list-box{
+	width:188px;
+	display:flex;
+	justify-content: space-around;;
+	align-items: center;
+}
+.menu-list-box .more-opt-item:not(:last-child){
+	margin-right: 20px;
+}
+.menu-list-box .more-opt-item .icon{
+	height: 18px;
+	width: 18px;
+}
+.sign-box{
+  border: 1px solid #F1F1F1;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sign-box .flag-img{
+  width: 78px;
+  height: 78px;
+}
+.sign-box .opt-box{
+  text-align: center;
+  flex:1;
+  margin-left: 12px;
+}
+.sign-box .opt-box .opt-title{
+  font-size: 16px;
+  font-weight: 500;
+}
+.sign-box .opt-box .sign-btn{
+  display:inline-block;
+  background: #FFB703;
+  color: #FFFFFF;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.popup-head{
+  text-align: right;
+}
+.popup-close-box{
+  margin: 8px 8px 0 0;
+  display: inline-block;
+  background: #F1F1F1;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  border-radius: 50%;
+  padding-top: 2px;
+}
+.arrow-down {
+  border: solid #7F7F7F;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 4px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.popup-wrapper{
+  padding: 24px 16px 32px;
+  overflow-y: auto;
+}
+.popup-wrapper .status-box{
+  text-align: center;
+  margin-bottom: 16px;
+}
+.popup-wrapper .checkbox-list-box{
+  margin-bottom: 16px;
+}
+.popup-wrapper .status-box .f-img{
+  width: 78px;
+  height: 78px;
+}
+.popup-wrapper .status-box .f-title{
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.popup-wrapper .handwrite-box{
+  background: #F3F8F9;
+  border: 1px dashed #cccccc;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  text-align: center;
+  color: #8a8a8a;
+  font-size: 12px;
+}
+.popup-wrapper .handwrite-box.not-sign{
+  padding: 32px;
+}
+.popup-wrapper .handwrite-box .opt-box{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 12px;
+}
+.popup-wrapper .handwrite-box .opt-box .icon{
+  margin-right: 6px;
+}
+.popup-wrapper .handwrite-box .icon{
+  width: 16px;
+  height: 16px;
+}
+.popup-wrapper .weui-cell:before {
+	display: none;
+}
+.popup-wrapper .weui-cell{
+	padding: 6px 0;
+}
+</style>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ca667b4e604f41172ad66175206437c5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+<body style="height: 100%;">
+	<div id="wrapper">
+			<div style="padding: 20px 20px 0;text-align: center;font-size: 22px;color: #333333;">查询结果</div>
+		
+<div id="result_content" style="padding:10px 15px;background: #FFFFFF;">
+		<div id="result_data_table">
+			<table class="table table-bordered s_table-bordered js_result_table" data-id="689">
+			<tr>
+										<td class="left_cell"><span >考号</span></td>
+											<td class="right_cell">241100925</td>									</tr><tr>
+										<td class="left_cell"><span >姓名</span></td>
+											<td class="right_cell">郭睿阳</td>									</tr><tr>
+										<td class="left_cell"><span >班级</span></td>
+											<td class="right_cell">26班</td>									</tr><tr>
+										<td class="left_cell"><span >身份证</span></td>
+											<td class="right_cell">430224200908080118</td>									</tr><tr>
+										<td class="left_cell"><span >身份证后四位</span></td>
+											<td class="right_cell">0118</td>									</tr><tr>
+										<td class="left_cell"><span >总分</span></td>
+											<td class="right_cell">457</td>									</tr><tr>
+										<td class="left_cell"><span >总分名次</span></td>
+											<td class="right_cell">126</td>									</tr><tr>
+										<td class="left_cell"><span >语文</span></td>
+											<td class="right_cell">93</td>									</tr><tr>
+										<td class="left_cell"><span >数学</span></td>
+											<td class="right_cell">116</td>									</tr><tr>
+										<td class="left_cell"><span >英语</span></td>
+											<td class="right_cell">71</td>									</tr><tr>
+										<td class="left_cell"><span >物理</span></td>
+											<td class="right_cell">55</td>									</tr><tr>
+										<td class="left_cell"><span >化学</span></td>
+											<td class="right_cell">69</td>									</tr><tr>
+										<td class="left_cell"><span >历史</span></td>
+											<td class="right_cell">未上传</td>									</tr><tr>
+										<td class="left_cell"><span >地理</span></td>
+											<td class="right_cell">53</td>									</tr><tr>
+										<td class="left_cell"><span >生物</span></td>
+											<td class="right_cell">未上传</td>									</tr><tr>
+										<td class="left_cell"><span >政治</span></td>
+											<td class="right_cell">未上传</td>									</tr>					</table>		</div>
+		<div style="text-align:center;margin-top:10px;">
+							</div>
+				<div class="result_tips" style="margin:20px 0;">对查询结果有疑问请联系我们</div>			<div class="qr-box">
+		<div>
+			<div class="title">长按关注查询公众号</div>
+			<div class="sub-title">快速进入查询 保存结果 接收通知</div>
+		</div>
+		<div>
+		    <img style="width:100px;height:100px;" src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQFe8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAySWZfVlI0a0w4Ty0xMDAwME0wN0sAAgR1tfRoAwQAAAAA"/>
+		</div>
+	</div></div>
+<div style="height:70px;"></div>
+		<div class="more-opt-box normal-user">
+		<div>
+			<a href="https://mp.weixin.qq.com/s/AYsbckKKIrOK9O59kzntBg" style="display:inline-flex;align-items:center;">
+				<img style="height:24px;" src="/Public/static/images/ycfwpt-logo.png"/>
+				<span style="font-size:15px;color:#000;font-weight:bold;">发查询用<span style="color:#2568cc;">易查分</span></span>
+				<img style="width: 20px;height: 20px;margin-top:2px;" src="/Public/Mark/images/result/right-arrow.png"/>
+			</a>
+		</div>
+		<div class="menu-list-box">
+			<div class="more-opt-item" id="doLockBtn">
+				<a href="javascript:;">
+					<img class="icon" src="/Public/Mark/images/result/lock.png"/>
+					<div class="txt">锁定</div>
+				</a>
+			</div>
+			<!-- <div class="more-opt-item">
+				<a href="https://mp.weixin.qq.com/s/u7Ac_8BttJBIFWojUlUpjg">
+					<img class="icon" src="/Public/Mark/images/result/save.png"/>
+					<div class="txt">保存</div>
+				</a>
+			</div> -->
+			<div class="more-opt-item">
+				<a href="https://mp.weixin.qq.com/s/rm6iWP5Qo4lPR75JNpLt7w">
+					<img class="icon" src="/Public/Mark/images/result/pdf.png"/>
+					<div class="txt">导出</div>
+				</a>
+			</div>
+			<div class="more-opt-item">
+				<a style="color:#FFFFFF;display:inline-flex;font-size:12px;padding: 4px 8px;line-height:1.6;justify-content: center;" href="https://mp.weixin.qq.com/s/u7Ac_8BttJBIFWojUlUpjg" class="weui-btn weui-btn_primary">
+					<img style="width:13px;height:13px;" class="icon" src="/Public/Mark/images/result/save-white.png"/><span style="margin-left:2px;">保存</span>
+				</a>
+			</div>
+		</div>
+		<!-- <div class="more-opt-item">
+			<a href="https://mp.weixin.qq.com/s?__biz=Mzg2MTgzNDY4MA==&mid=2247483787&idx=1&sn=857cdeac39a0bfd4e3340e6342e70bd1&chksm=ce105d5cf967d44a5ae5171ec4f53e866852a41fe77a363a3db17e97ec8537662baff47f14c1#rd">
+				<img class="icon" src="/Public/Mark/images/result/help.png"/>
+				<span class="txt">更多说明</span>
+			</a>
+		</div> -->
+	</div>
+		<div class="push"></div>
+	</div>
+	<!-- /**e69cace7ab99e68980e69c89e4bba3e7a081e5a48de588b6e887aa796963686166656e2e636f6d**/  -->
+	
+	
+<script src="/Public/static/jquery_weui/js/city-picker.js"></script>
+<script type="text/javascript">
+$("#doLockBtn").click(function(){
+    	location.href="https://mp.weixin.qq.com/s/r-SWboLaov0a0U7dYEOPaA"});
+$("#doSaveEditedFieldsBtn").click(function(){
+	var result = checkData();
+	if(result===false){
+		return;
+	}
+				$.confirm("确认提交吗？", function() {
+			saveData(result);
+		}, function() {});});
+
+function checkData(){
+	var updateData = [];
+	var valid = true;
+	$("#result_content .js_result_table").each(function(index,ele){
+		var data = {};
+		data['id'] = $(ele).data("id");
+		var editedFields = getEditedFields(ele);
+		if(editedFields === false){
+			valid = false;
+			return false;
+		}
+		data['editedFields'] = editedFields;
+		updateData.push(data);
+	});
+	if(!valid){
+		return false;
+	}
+	return updateData;
+}
+
+function saveData(updateData){
+	$("#doSaveEditedFieldsBtn").prop('disabled', true);
+	$("#doSaveEditedFieldsBtn").addClass('weui-btn_disabled');
+	$("#doSaveEditedFieldsBtn").text('提交中...');
+	$.post("/public/dosaveeditedfields.html", {updateData: updateData}, function(result){
+		$("#doSaveEditedFieldsBtn").prop('disabled', false);
+		$("#doSaveEditedFieldsBtn").removeClass('weui-btn_disabled');
+		$("#doSaveEditedFieldsBtn").text('确认提交');
+		if(result.status == 1){
+			location.href="/public/normalsuccess/type/editfield_submit_success.html"
+		}else{
+			$.alert(result.info);
+		}
+	},"json");
+}
+
+$(".address-picker").cityPicker({
+  title: "选择出发地",
+  onChange: function (picker, values, displayValues) {
+  }
+});
+
+function getEditedFields(ele){
+	var editedFields = [];
+	var valid = true;
+	$(ele).find(".js-edit-item").each(function(index,ele){
+		var type = $(ele).data('type');
+		if($(ele).is('div')){
+			var name = $(ele).data('name');
+			var id = $(ele).data('id');
+			var inputName = name+'-'+id;
+			if(type=='checkbox'){
+				var chk_vals = [];
+				$("input[name='"+inputName+"']:checked").each(function(){
+					chk_vals.push($(this).val());
+				});
+				var value = chk_vals.join(",");
+			}else{
+				var value = $("input[name='"+inputName+"']:checked").val();
+			}
+		}else{
+			var name = $(ele).attr("name");
+			var value = $(ele).val();
+			if(type=='address'){
+				var detail = value;
+				var region = $(ele).prev().val();
+				value = region + '  '+detail;
+				if(region==''){
+					value = detail;
+				}
+			}
+		}
+		value = (value==undefined?'':value);
+		var required = $(ele).data('required');
+		var label = $(ele).data('label');
+		if(required=='yes' && value==''){
+		    if(type=='image'){
+		        $.alert('['+label+']请上传图片');
+		    }else{
+		        $.alert('['+label+']不能为空');
+		    }
+			valid = false;
+			return false;
+		}
+		if(type=='text'){
+			var minWordNum = $(ele).data('min');
+			var maxWordNum = $(ele).data('max');
+			if(value.length<Number(minWordNum)){
+				$.alert('['+label+']长度不能小于'+minWordNum+'个字符');
+				valid = false;
+				return false;
+			}
+			if(value.length>Number(maxWordNum)){
+				$.alert('['+label+']长度不能多于'+maxWordNum+'个字符');
+				valid = false;
+				return false;
+			}
+		}
+		if(type=='checkbox'){
+			var minCheckNum = $(ele).data('min');
+			var maxCheckNum = $(ele).data('max');
+			if(chk_vals.length<minCheckNum){
+				$.alert('['+label+']选择不能小'+minCheckNum+'项');
+				valid = false;
+				return false;
+			}
+			if(chk_vals.length>maxCheckNum){
+				$.alert('['+label+']选择不能大'+maxCheckNum+'项');
+				valid = false;
+				return false;
+			}
+		}
+		if(type=='mobile' && value!='' && !checkMobile(value)){
+			$.alert('['+label+']请填写正确的手机号');
+			valid = false;
+			return false;
+		}
+		if(type=='idcard' && value!='' && !checkIdcard(value)){
+			$.alert('['+label+']请填写正确的身份证号');
+			valid = false;
+			return false;
+		}
+		var m = {};
+		m['name'] = name;
+		if(type=='idcard'){
+		    m['value'] = value?value.toUpperCase():value;
+		}else{
+		    m['value'] = value;
+		}
+		editedFields.push(m);
+	});
+	if(valid){
+		return editedFields;
+	}
+	return false;
+}
+
+function checkIdcard(idcard){
+    var reg=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X|x)$/;
+    return reg.test(idcard);
+}
+
+function checkMobile(mobile){
+	var reg=/^[1][0-9]{10}$/;
+	return reg.test(mobile);
+}
+
+var pageType = "mobile";
+$("#jsNextPageBtn").click(function(){
+	var totalpage = $("#jsNextPageBtn").data('totalpage');
+	var currentpage = $("#jsNextPageBtn").data('currentpage');
+	var nextpage = currentpage+1;
+	if(nextpage > totalpage){
+		$("#jsNextPageBtn").hide();
+		return;
+	}else{
+		$("#jsNextPageBtn").data('currentpage', nextpage);
+	}
+	showLoading();
+	$.get("/public/queryresultpage.html", {pageType: pageType, pageNum:nextpage}, function(result){
+		$("#result_data_table").append(result);
+		if(nextpage >= totalpage){
+			$("#jsNextPageBtn").hide();
+		}
+		hideLoading();
+	});
+});
+
+function showLoading(){
+	$("#jsNextPageBtn").hide();
+	$("#jsLoadingTip").show();
+}
+function hideLoading(){
+	$("#jsNextPageBtn").show();
+	$("#jsLoadingTip").hide();
+}
+
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?232a6abc98c0cbad791ca470aacb637b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+var windowWidth = window.innerWidth;
+if(windowWidth>600){
+	$('body,html').css({background:'gray'});
+	if($('#wrapper').height() < window.innerHeight){
+		$("#wrapper").css({height:window.innerHeight+'px'});
+	}
+	if($('#result_content').length>0){
+		$('.more-opt-box').css({width: '600px'});
+		$("#wrapper").css({width:'600px',margin:'0 auto', background:'#FFFFFF'});
+	}else{
+		$("#wrapper").css({width:'600px',margin:'0 auto -110px', background:'#F0EFF4'});
+	}
+	$('#fixed-footer').css({width:'600px', left:0, right:0, margin:'0 auto'});
+	if($('#ycf-sign-popup').length>0){
+		var left = (window.innerWidth-600)/2;
+		$('#ycf-sign-popup').css({left:left+'px', width:'600px'});
+	}
+}
+</script>
+</body>
+</html>
